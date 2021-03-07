@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./Components/Header";
+import React, { Component } from 'react'
+import Movies from "./Components/Movies";
+import {Switch, Route} from "react-router-dom";
+import Favourites from "./Components/Favourites";
+import Error from "./Components/Error";
+import SingleMovie from "./Components/SingleMovie";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+
+
+export default class App extends Component {
+  render() {
+    return (
+      <div className="container">
+        <Header />
+        <Switch>
+          <Route  exact path='/movies/:id' component={SingleMovie}/>
+          <Route exact path='/favourites' component={Favourites}/>
+          <Route exact path='/' component = {Movies} />
+          <Route component={Error}/>
+        </Switch>
+      </div>
+    )
+  }
 }
-
-export default App;
